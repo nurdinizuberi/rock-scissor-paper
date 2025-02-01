@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Scissor, Paper</title>
+</head>
+<body>
+    <script>
+        const object1 =  "rock";
+        const object2 = "scissor";
+        const object3 = "paper";
+        let humanScore = 0;
+        let computerScore = 0;
+
+        function getComputerChoice() {
+            const rand = Math.floor(Math.random() * 3);
+
+            if (rand === 0){
+                return object1;
+            } else if (rand === 1) {
+                return object2;
+            } else {
+                return object3;
+            }
+        }
+
+        function getHumanChoice() {
+            const userChoice = prompt("Choose between \"rock\", \"scissor\" and \"paper\": ");
+            if (userChoice == "rock"){
+                return object1;
+            } else if (userChoice == "scissor"){
+                return object2;
+            } else {
+                return object3;
+            }
+        }
+
+        function playRound(humanChoice, computerChoice){
+            humanChoice = humanChoice.toLowerCase();
+            if(humanChoice == computerChoice){
+                return "It's a tie";
+            } else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")){
+                humanScore++;
+                return `You win! ${humanChoice} beats ${computerChoice}`;
+            } else {
+                computerScore++;
+                return `You lose! ${computerChoice} beats ${humanChoice}`;
+            } 
+        }
+
+        function playGame(){
+            for (let i = 0; i < 5; i++) { 
+            humanChoice = getHumanChoice();
+            computerChoice = getComputerChoice();
+            result = playRound(humanChoice, computerChoice);
+            console.log(result);
+        }
+
+        console.log("Final Scores:");
+        console.log("Human Score:" +  humanScore);
+        console.log("Computer Score: " + computerScore);
+        }
+
+        console.log(playGame());
+        
+    </script>
+</body>
+</html>
